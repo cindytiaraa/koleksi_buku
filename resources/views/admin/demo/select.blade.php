@@ -53,6 +53,64 @@
     }
 @endphp
 
+{{-- Demo Dynamic Select --}}
+<div class="row mb-4">
+
+    <div class="col-12">
+
+        <div class="card">
+
+            <div class="card-header">
+                <h4 class="card-title mb-0">
+                    Demo Dynamic Select
+                </h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row align-items-end">
+
+                    <div class="col-md-9">
+
+                        <div class="form-group mb-0">
+
+                            <label>
+                                Kategori Baru
+                            </label>
+
+                            <input
+                                type="text"
+                                id="kategoriBaru"
+                                class="form-control"
+                                placeholder="Masukkan kategori baru">
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <button
+                            type="button"
+                            id="btnTambahKategori"
+                            class="btn btn-gradient-primary btn-block">
+
+                            Tambah
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <div class="row">
 
     {{-- Card 1: Select Biasa --}}
@@ -146,9 +204,18 @@
         displayEl.textContent = '—';
         displayEl.classList.add('text-muted');
 
-        if (!idKategori || !bukuData[idKategori]) {
-            selectEl.innerHTML = '<option value="">-- Pilih Kategori dulu --</option>';
+        if (!idKategori) {
+            selectEl.innerHTML =
+            '<option value="">-- Pilih Kategori dulu --</option>';
+
             selectEl.disabled = true;
+            return;
+        }
+
+        if (!bukuData[idKategori]) {
+            selectEl.disabled = false;
+            selectEl.innerHTML =
+                '<option value="">Belum ada buku</option>';
             return;
         }
 
@@ -197,23 +264,59 @@
         populateBuku(this.value, selectBuku, display);
 
         // Select2 perlu di-destroy dan di-init ulang setelah opsi berubah
-        $('#selectBuku2').select2('destroy');
-        $('#selectBuku2').select2({
-            placeholder: this.value ? '-- Pilih Buku --' : '-- Pilih Kategori dulu --',
-            allowClear: true
+            $('#selectBuku2').select2('destroy');
+            $('#selectBuku2').select2({
+                placeholder: this.value ? '-- Pilih Buku --' : '-- Pilih Kategori dulu --',
+                allowClear: true
+            });
         });
-    });
 
-    $('#selectBuku2').on('change', function () {
-        const display = document.getElementById('bukuTerpilih2');
-        const text    = this.options[this.selectedIndex]?.text;
-        if (this.value && text) {
-            display.textContent = text;
-            display.classList.remove('text-muted');
-        } else {
-            display.textContent = '—';
-            display.classList.add('text-muted');
-        }
-    });
+        $('#selectBuku2').on('change', function () {
+            const display = document.getElementById('bukuTerpilih2');
+            const text    = this.options[this.selectedIndex]?.text;
+            if (this.value && text) {
+                display.textContent = text;
+                display.classList.remove('text-muted');
+            } else {
+                display.textContent = '—';
+                display.classList.add('text-muted');
+            }
+        });
+
+        // Tambah kategori (Dummy)
+        $('#btnTambahKategori').on('click', function () {
+
+            const nama = $('#kategoriBaru').val().trim();
+
+            if (nama === '') {
+                alert('Kategori tidak boleh kosong!');
+                return;
+            }
+
+            const id = 'dummy_' + Date.now();
+
+            // Tambah ke Select biasa
+            $('#selectKategori1').append(
+                $('<option>', {
+                    value: id,
+                    text: nama
+                })
+            );
+
+            // Tambah ke Select2
+            $('#selectKategori2').append(
+                $('<option>', {
+                    value: id,
+                    text: nama
+                })
+            );
+
+            // Refresh Select2
+            $('#selectKategori2').trigger('change.select2');
+
+            // Bersihkan input
+            $('#kategoriBaru').val('');
+        });
+
 </script>
 @endsection

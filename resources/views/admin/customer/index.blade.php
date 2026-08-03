@@ -33,12 +33,13 @@
                                     <th>Address Details</th>
                                     <th width="150">Photo Preview</th>
                                     <th width="150">Registered</th>
+                                    <th width="100">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @forelse($customers as $index => $c)
                                 <tr>
-                                    <td>{{ $customers->firstItem() + $index }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
                                         <label class="badge badge-gradient-primary">#{{ $c->idcustomer }}</label>
                                     </td>
@@ -66,12 +67,21 @@
                                         @endif
                                     </td>
                                     <td>{{ $c->created_at->format('d M Y') }}</td>
+                                    <td>
+                                        <form action="{{ route('admin.customer.destroy', $c->idcustomer) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                                <i class="mdi mdi-delete"></i> Hapus
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @empty
                                 <tr>
-                                    <td colspan="6" class="text-center">
+                                    <td colspan="7" class="text-center">
                                         <p class="mt-3 text-muted">No customers found. 
-                                            <a href="{{ route('customer.create1') }}">Capture your first customer</a>
+                                            <a href="{{ route('admin.customer.create1') }}">Capture your first customer</a>
                                         </p>
                                     </td>
                                 </tr>

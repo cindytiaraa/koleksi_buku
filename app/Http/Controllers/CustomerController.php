@@ -37,11 +37,30 @@ class CustomerController extends Controller
             $image_parts = explode(";base64,", $img);
             $image_base64 = base64_decode($image_parts[1]);
             $fileName = 'cust_' . time() . '.png';
+            
+            // Pastikan folder ada
+            if (!Storage::exists('public/customers')) {
+                Storage::makeDirectory('public/customers', 0755, true);
+            }
+            
             Storage::put('public/customers/' . $fileName, $image_base64);
             $data['foto_path'] = 'customers/' . $fileName;
         }
 
         Customer::create($data);
         return response()->json(['success' => 'Data Berhasil Disimpan!']);
+    }
+
+    public function destroy($id)
+    {
+        $customer = Customer::findOrFail($id);
+        
+        // Hapus file foto jika ada
+        if ($customer->foto_path && Storage::exists('public/' . $customer->foto_path)) {
+            Storage::delete('public/' . $customer->foto_path);
+        }
+        
+        $customer->delete();
+        return redirect()->route('admin.customer.index')->with('success', 'Data Customer berhasil dihapus');
     }
 }

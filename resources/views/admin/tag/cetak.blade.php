@@ -37,7 +37,7 @@
             padding: 0;
         }
         td {
-            width: 38mm;
+            width: 32mm;
             height: 18mm;
             padding: 0; 
             vertical-align: middle;
@@ -46,9 +46,9 @@
             border: 0;
         }
         .label-content {
-            width: 38mm;
+            width: 32mm;
             height: 18mm;
-            padding: 0.5mm 1mm;
+            padding: 2px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -56,28 +56,26 @@
             line-height: 1.1;
         }
         .barcode-container {
-            width: 100%;
-            height: 5.5mm;
-            margin-bottom: 0.2mm;
+            width: 95px;
+            height: 18px;
+            margin: 4px auto 1px;
         }
         .barcode-container img {
-            max-width: 95%;
-            height: 100%;
+            width: 95px;
+            height: 18px;
             display: block;
-            margin: 0 auto;
+            margin: auto;
         }
-        .id-barang {
-            font-size: 5pt;
-            font-weight: bold;
-            color: #000;
+        .id-barang{
+            font-size:8px;
+            margin-top:1px;
+            margin-bottom:2px;
         }
-        .judul {
-            font-size: 5.5pt;
-            font-weight: 800;
-            max-height: 7.5pt;
-            overflow: hidden;
-            text-transform: uppercase;
-            margin: 0.1mm 0;
+        .judul{
+            font-size:9px;
+            font-weight:bold;
+            text-transform:uppercase;
+            margin-bottom:10px;
         }
         .pengarang {
             font-size: 4.5pt;
@@ -86,10 +84,9 @@
             max-height: 5.5pt;
             overflow: hidden;
         }
-        .harga {
-            font-size: 6pt;
-            font-weight: 900;
-            margin-top: 0.2mm;
+        .harga{
+            font-size:9px;
+            font-weight:bold;
         }
         .page-break {
             page-break-after: always;

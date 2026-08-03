@@ -175,12 +175,12 @@ $(document).ready(function() { // Tunggu sampai struktur HTML (DOM) halaman sele
         }
 
         $.ajax({ // Eksekusi pengiriman form menggunakan AJAX
-            url: "{{ route('customer.store') }}", // Tuju route simpan data Laravel
+            url: "{{ route('admin.customer.store') }}", // Tuju route simpan data Laravel
             type: "POST", // Pakai mode POST untuk create data
             data: $(this).serialize(), // Ambil SEMUA data di dalam <form> (termasuk string gambar panjang di foto_data) lalu bungkus jadi format query string
             success: function(res) { // Jika server membalas dengan status sukses
                 Swal.fire('Berhasil!', 'Data Customer (BLOB) tersimpan.', 'success').then(() => { // Tampilkan pop up centang
-                    window.location.href = "{{ route('customer.index') }}"; // Setelah diklik OK, pindah otomatis ke halaman Daftar Customer
+                    window.location.href = "{{ route('admin.customer.index') }}"; // Setelah diklik OK, pindah otomatis ke halaman Daftar Customer
                 });
             }
         });

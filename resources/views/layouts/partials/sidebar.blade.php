@@ -34,14 +34,6 @@
             </a>
         </li>
 
-        {{-- DataTables --}}
-        <li class="nav-item">
-            <a class="nav-link {{ Request::is('admin/datatables') ? 'active' : '' }}" href="{{ route('admin.datatables.index') }}">
-                <span class="menu-title">DataTables</span>
-                <i class="mdi mdi-table-large menu-icon"></i>
-            </a>
-        </li>
-
         {{-- Buku --}}
         <li class="nav-item">
             <a class="nav-link {{ Request::is('admin/buku*') && !Request::is('admin/datatables', 'admin/buku/select') ? 'active' : '' }}" href="{{ route('admin.buku.index') }}">
@@ -57,11 +49,32 @@
             </a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link {{ Request::is('admin/tag*') ? 'active' : '' }}" href="{{ route('admin.tag.index') }}">
-                <span class="menu-title">Tag Harga</span>
-                <i class="mdi mdi-tag-multiple menu-icon"></i>
+        {{-- Customer --}}
+        <li class="nav-item {{ Request::is('admin/customer*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#customerMenu" aria-expanded="{{ Request::is('admin/customer*') ? 'true' : 'false' }}" aria-controls="customerMenu">
+                <span class="menu-title">Customer</span>
+                <i class="mdi mdi-account menu-icon"></i>
+                <i class="menu-arrow mdi mdi-chevron-down"></i>
             </a>
+            <div class="collapse {{ Request::is('admin/customer*') ? 'show' : '' }}" id="customerMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/customer') && !Request::is('admin/customer/create*') ? 'active' : '' }}" href="{{ route('admin.customer.index') }}">
+                            <span class="menu-title">Daftar Customer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/customer/create1') ? 'active' : '' }}" href="{{ route('admin.customer.create1') }}">
+                            <span class="menu-title">Tambah Form 1</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/customer/create2') ? 'active' : '' }}" href="{{ route('admin.customer.create2') }}">
+                            <span class="menu-title">Tambah Form 2</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </li>
 
         {{-- Scanner --}}
@@ -104,6 +117,24 @@
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('admin/pdf/undangan') ? 'active' : '' }}" href="{{ route('admin.pdf.undangan') }}">
                             <span class="menu-title">Undangan</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+
+        {{-- Tag Harga --}}
+        <li class="nav-item {{ Request::is('admin/tag*') ? 'active' : '' }}">
+            <a class="nav-link" data-bs-toggle="collapse" href="#tagMenu" aria-expanded="{{ Request::is('admin/tag*') ? 'true' : 'false' }}" aria-controls="tagMenu">
+                <span class="menu-title">Tag Harga</span>
+                <i class="mdi mdi-tag-multiple menu-icon"></i>
+                <i class="menu-arrow mdi mdi-chevron-down"></i>
+            </a>
+            <div class="collapse {{ Request::is('admin/tag*') ? 'show' : '' }}" id="tagMenu">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/tag') ? 'active' : '' }}" href="{{ route('admin.tag.index') }}">
+                            <span class="menu-title">Daftar Tag</span>
                         </a>
                     </li>
                 </ul>
@@ -235,14 +266,6 @@
             </div>
         </li>
 
-        {{-- Customer
-        <li class="nav-item {{ Request::is('admin/customer*') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('admin.customer.index') }}">
-                <span class="menu-title">Customer</span>
-                <i class="mdi mdi-account menu-icon"></i>
-            </a>
-        </li> --}}
-
         {{-- Else --}}
         <li class="nav-item {{ Request::is('admin/buku/select', 'admin/order*') ? 'active' : '' }}">
             <a class="nav-link" data-bs-toggle="collapse" href="#elseMenu" aria-expanded="{{ Request::is('admin/buku/select', 'admin/order*') ? 'true' : 'false' }}" aria-controls="elseMenu">
@@ -252,26 +275,31 @@
             </a>
             <div class="collapse {{ Request::is('admin/buku/select', 'admin/order*') ? 'show' : '' }}" id="elseMenu">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item">
-                        <a class="nav-link {{ Request::is('admin/buku/select') ? 'active' : '' }}" href="{{ route('admin.buku.select') }}">
-                            <span class="menu-title">Select</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('admin/order*') ? 'active' : '' }}" href="{{ route('admin.order.index') }}">
                             <span class="menu-title">Order</span>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/demo/table') ? 'active' : '' }}" href="{{ route('admin.demo.table') }}">
+                            <span class="menu-title">HTML Table</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {{ Request::is('admin/datatables') && !Request::is('admin/datatables/manual') ? 'active' : '' }}" href="{{ route('admin.datatables.index') }}">
+                            <span class="menu-title">DataTables</span>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {{ Request::is('admin/wilayah') ? 'active' : '' }}" href="{{ route('admin.wilayah.index') }}">
                             <span class="menu-title">Wilayah</span>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link {{ Request::is('admin/customer') ? 'active' : '' }}" href="{{ route('admin.customer.index') }}">
-                            <span class="menu-title">Customer</span>
-                        </a>
-                    </li> --}}
+
                 </ul>
             </div>
         </li>

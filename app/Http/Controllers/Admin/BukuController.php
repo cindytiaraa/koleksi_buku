@@ -154,6 +154,33 @@ class BukuController extends Controller
         return $pdf->download('label_buku.pdf');
 
     }
+
+    // ===== DEMO PAGES =====
+    public function datatables()
+    {
+        return view('admin.demo.datatables');
+    }
+
+    public function manual()
+    {
+        return view('admin.demo.datatables_manual');
+    }
+
+    public function demoTable()
+    {
+        return view('admin.demo.tabel');
+    }
+
+    public function demoSelect()
+    {
+        return view('admin.demo.select');
+    }
+
+    public function demoWilayah()
+    {
+        return view('admin.demo.wilayah');
+    }
+
     public function selectView()
     {
         $kategori = Kategori::with('buku')->get();

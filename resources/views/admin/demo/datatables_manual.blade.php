@@ -15,41 +15,23 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Input Buku</h4>
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="card-title mb-0">Daftar Buku</h4>
 
-                <form id="formBukuDT">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label>Nama Buku</label>
-                                <input type="text" id="inputNama" class="form-control"
-                                    placeholder="Nama buku..." required>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <label>Harga</label>
-                                <input type="number" id="inputHarga" class="form-control"
-                                    placeholder="Harga..." required min="0">
-                            </div>
-                        </div>
-                        <div class="col-md-2 d-flex align-items-end">
-                            <div class="form-group w-100">
-                                <label class="d-block">&nbsp;</label>
-                                <button id="btnTambah" type="button" class="btn btn-primary w-100">
-                                    Tambah
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-
-                <hr>
+                    <button
+                        class="btn btn-primary"
+                        data-toggle="modal"
+                        data-target="#modalTambah">
+                        <i class="mdi mdi-plus"></i>
+                        Tambah Buku
+                    </button>
+                </div>
 
                 <div class="table-responsive">
                     <table class="table table-striped" id="tabelDT">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th>ID</th>
                                 <th>Nama</th>
                                 <th>Harga</th>
@@ -59,6 +41,63 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalTambah" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Buku</h5>
+                <button class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="formBukuDT">
+
+                    <div class="form-group">
+                        <label>Nama Buku</label>
+                        <input
+                            type="text"
+                            id="inputNama"
+                            class="form-control"
+                            required>
+                    </div>
+
+                    <div class="form-group mt-3">
+                        <label>Harga</label>
+                        <input
+                            type="number"
+                            id="inputHarga"
+                            class="form-control"
+                            required
+                            min="0">
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                    class="btn btn-secondary"
+                    data-dismiss="modal">
+                    Batal
+                </button>
+
+                <button
+                    id="btnTambah"
+                    class="btn btn-primary">
+                    Simpan
+                </button>
+
+            </div>
+
         </div>
     </div>
 </div>
@@ -136,7 +175,9 @@
             const hargaVal = Number(harga.value);
 
             const rowNode = table.row.add([
-                id, namaVal,
+                counter,
+                id,
+                namaVal,
                 `Rp ${hargaVal.toLocaleString('id-ID')}`
             ]).draw().node();
 
@@ -148,7 +189,11 @@
             counter++;
             nama.value = ''; harga.value = '';
             btn.disabled = false;
-            btn.innerHTML = 'Tambah';
+            btn.innerHTML='Simpan';
+
+            $('#modalTambah').modal('hide');
+
+            form.reset();
         }, 600);
     });
 
@@ -209,6 +254,10 @@
             btn.innerHTML = 'Hapus';
             $('#modalEditHapus').modal('hide');
         }, 600);
+    });
+
+    $('#modalTambah').on('shown.bs.modal',function(){
+        document.getElementById('formBukuDT').reset();
     });
 </script>
 @endsection

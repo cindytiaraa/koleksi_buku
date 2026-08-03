@@ -70,11 +70,22 @@ Route::middleware(['auth', 'otp', 'isAdmin'])
 
         // ======= DataTables =======
         Route::get('datatables',
-            [\App\Http\Controllers\Admin\BukuController::class, 'index']
+            [\App\Http\Controllers\Admin\BukuController::class, 'datatables']
         )->name('datatables.index');
         Route::get('datatables/manual',
             [\App\Http\Controllers\Admin\BukuController::class, 'manual']
         )->name('datatables_manual');
+
+        // ===== DEMO PAGES =====
+        Route::get('demo/table',
+            [\App\Http\Controllers\Admin\BukuController::class, 'demoTable']
+        )->name('demo.table');
+        Route::get('demo/select',
+            [\App\Http\Controllers\Admin\BukuController::class, 'demoSelect']
+        )->name('demo.select');
+        Route::get('demo/wilayah',
+            [\App\Http\Controllers\Admin\BukuController::class, 'demoWilayah']
+        )->name('demo.wilayah');
 
         // ======= Buku =======
         Route::get('buku/menu',
@@ -128,6 +139,7 @@ Route::middleware(['auth', 'otp', 'isAdmin'])
             [\App\Http\Controllers\Admin\WilayahController::class, 'index']
         )->name('wilayah.index');
 
+
         // ======= Customer =======
         Route::get('customer',
             [\App\Http\Controllers\CustomerController::class, 'index']
@@ -141,6 +153,9 @@ Route::middleware(['auth', 'otp', 'isAdmin'])
         Route::post('customer/store',
             [\App\Http\Controllers\CustomerController::class, 'store']
         )->name('customer.store');
+        Route::delete('customer/{id}',
+            [\App\Http\Controllers\CustomerController::class, 'destroy']
+        )->name('customer.destroy');
 
         // ======= Order / Transaksi Online =======
         Route::get('order',
@@ -197,7 +212,6 @@ Route::middleware(['auth', 'otp', 'isAdmin'])
         Route::get('stok', [\App\Http\Controllers\Admin\KunjunganTokoController::class, 'indexStok'])->name('stok.index');
         Route::get('stok/{barcode}', [\App\Http\Controllers\Admin\KunjunganTokoController::class, 'showStok'])->name('stok.show');
     });
-
 
 /*
 |=======================
@@ -432,10 +446,4 @@ Route::middleware(['auth'])->group(function () {
     // Wilayah proxy routes
     Route::get('wilayah/provinsi', [\App\Http\Controllers\Admin\WilayahController::class, 'provinsi'])->name('wilayah.provinsi');
     Route::get('wilayah/kota-by-name/{name}', [\App\Http\Controllers\Admin\WilayahController::class, 'kotaByName']);
-
-    // Non-prefixed customer route aliases for forms that reference route('customer.*')
-    Route::get('admin/customer', [\App\Http\Controllers\CustomerController::class, 'index'])->name('customer.index');
-    Route::get('admin/customer/create1', [\App\Http\Controllers\CustomerController::class, 'create1'])->name('customer.create1');
-    Route::get('admin/customer/create2', [\App\Http\Controllers\CustomerController::class, 'create2'])->name('customer.create2');
-    Route::post('admin/customer/store', [\App\Http\Controllers\CustomerController::class, 'store'])->name('customer.store');
 });

@@ -171,12 +171,12 @@ $(document).ready(function() { // Pastikan seluruh elemen HTML dimuat sebelum Ja
         if(!$('#foto_data').val()) return Swal.fire('Warning', 'Foto belum diambil!', 'warning'); // Jika belum jepret foto, hentikan proses dan berikan peringatan
 
         $.ajax({ // Mulai kirim data ke Laravel via AJAX
-            url: "{{ route('customer.store') }}", // Arahkan ke rute penyimpan data customer
+            url: "{{ route('admin.customer.store') }}", // Arahkan ke rute penyimpan data customer
             type: "POST", // Gunakan metode POST
             data: $(this).serialize(), // Ambil semua isian form (Nama, Alamat, Wilayah, tipe form, dan teks Base64 foto)
             success: function(res) { // Jika server sukses memproses (menyimpan gambar sebagai file dan menyimpan path ke DB)
                 Swal.fire('Sukses!', 'Customer disimpan dengan File Path.', 'success').then(() => { // Tampilkan pesan sukses
-                    window.location.href = "{{ route('customer.index') }}"; // Pindahkan user ke halaman daftar customer
+                    window.location.href = "{{ route('admin.customer.index') }}"; // Pindahkan user ke halaman daftar customer
                 });
             }
         });
