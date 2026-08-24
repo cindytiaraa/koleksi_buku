@@ -5,8 +5,8 @@
 @section('content')
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div class="card shadow-sm border-0" style="border-radius: 15px;">
-            <div class="card-header bg-gradient-primary text-white py-3" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
+        <div class="card shadow-sm border-0" style="border-radius: 16px;">
+            <div class="card-header card-header-gradient py-3">
                 <h5 class="mb-0 font-weight-bold"><i class="mdi mdi-bookmark-plus me-2"></i> Form Booking Peminjaman</h5>
             </div>
             
@@ -20,13 +20,13 @@
 
                 <!-- Ringkasan Info Buku -->
                 <div class="d-flex align-items-start p-3 bg-light rounded mb-4" style="background-color: #f8f9fa; border: 1px solid #eee;">
-                    <div class="bg-primary text-white rounded p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
-                        📖
+                    <div class="rounded p-3 me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; background:linear-gradient(135deg,var(--primary-700),var(--primary-500)); color:#fff;">
+                        <i class="mdi mdi-book-open-page-variant-outline"></i>
                     </div>
                     <div>
                         <h5 class="font-weight-bold text-dark mb-1">{{ $buku->judul }}</h5>
                         <p class="text-muted small mb-1">Oleh: {{ $buku->pengarang }}</p>
-                        <span class="badge bg-gradient-primary text-white">{{ $buku->kategori->nama_kategori ?? '-' }}</span>
+                        <span class="badge text-white" style="background:var(--primary-600);">{{ $buku->kategori->nama_kategori ?? '-' }}</span>
                         <span class="badge bg-light text-dark border">Kode: {{ $buku->kode }}</span>
                     </div>
                 </div>
@@ -60,11 +60,10 @@
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">
-                        <a href="{{ route('user.dashboard') }}" class="btn btn-outline-secondary px-4 py-2" style="border-radius: 8px;">
+                        <a href="{{ route('user.dashboard') }}" class="btn btn-outline-secondary px-4 py-2 btn-pill">
                             <i class="mdi mdi-arrow-left me-2"></i> Batal
                         </a>
-                        <button type="submit" class="btn btn-primary px-5 py-2 font-weight-bold text-white border-0" 
-                                style="border-radius: 8px; box-shadow: 0 4px 15px rgba(145, 118, 251, 0.3);"
+                        <button type="submit" class="btn btn-primary px-5 py-2 font-weight-bold text-white border-0 btn-pill shadow-lp" 
                                 {{ $sedangDipinjam ? 'disabled' : '' }}>
                             <i class="mdi mdi-check-circle me-2"></i> Konfirmasi Pinjam
                         </button>

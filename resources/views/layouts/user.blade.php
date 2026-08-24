@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title', 'Toko Buku Online')</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
@@ -11,29 +13,38 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <style>
         :root {
-            --primary-900:#1e3a8a;
-            --primary-800:#1e40af;
-            --primary-700:#1d4ed8;
-            --primary-600:#2563eb;
-            --primary-500:#3b82f6;
-            --primary-100:#dbeafe;
-            --primary-50:#eff6ff;
-            --radius:10px;
-            --shadow:0 2px 8px rgba(30,64,175,.10);
+            --primary-900:#2D3748;
+            --primary-800:#4c3fd6;
+            --primary-700:#6C63FF;
+            --primary-600:#6C63FF;
+            --primary-500:#8B5CF6;
+            --primary-100:#ECE9FF;
+            --primary-50:#F8F9FC;
+            --radius:16px;
+            --shadow:0 5px 20px rgba(108,99,255,.10);
         }
-        body{margin:0;background:#f0f5ff;font-family:'Segoe UI',sans-serif;}
+        body{margin:0;background:var(--primary-50);font-family:'Poppins',sans-serif;}
 
-        .topnav{background:#fff;padding:12px 0;box-shadow:0 2px 8px rgba(30,64,175,.12);}
+        .topnav{background:#fff;padding:12px 0;box-shadow:0 2px 8px rgba(108,99,255,.12);}
         .topnav .navbar-brand{color:var(--primary-900);font-weight:700;font-size:1.2rem;}
-        .topnav .nav-link{color:rgba(30,64,175,.85) !important;}
-        .topnav .nav-link:hover,.topnav .nav-link.active{color:var(--primary-900) !important;}
-        .topnav .btn-logout{border:1px solid rgba(30,64,175,.4);color:var(--primary-900);padding:4px 14px;border-radius:20px;font-size:.85rem;}
-        .topnav .btn-logout:hover{background:rgba(37,99,235,.12);color:#fff;}
+        .topnav .nav-link{color:rgba(45,55,72,.75) !important;}
+        .topnav .nav-link:hover,.topnav .nav-link.active{color:var(--primary-700) !important;}
+        .topnav .btn-logout{border:1px solid rgba(108,99,255,.4);color:var(--primary-900);padding:4px 14px;border-radius:50px;font-size:.85rem;transition:.2s;}
+        .topnav .btn-logout:hover{background:rgba(108,99,255,.12);color:var(--primary-700);transform:translateY(-1px);}
 
         .card{border:none;border-radius:var(--radius);box-shadow:var(--shadow);}
         .card-book{transition:transform .2s;}
         .card-book:hover{transform:translateY(-4px);}
         .card-book .card-img-top{height:180px;object-fit:cover;border-radius:12px 12px 0 0;background:linear-gradient(135deg,var(--primary-700),var(--primary-500));display:flex;align-items:center;justify-content:center;font-size:3rem;color:#fff;}
+
+        /* ===== Reusable Design-System Utilities ===== */
+        .card-header-gradient{background:linear-gradient(135deg,var(--primary-700),var(--primary-500));color:#fff;border-radius:var(--radius) var(--radius) 0 0;border:none;}
+        .btn-pill{border-radius:50px !important;}
+        .shadow-lp{box-shadow:0 4px 15px rgba(108,99,255,.25) !important;}
+        .empty-state{text-align:center;padding:48px 16px;color:#6b7280;}
+        .empty-state i{font-size:3rem;color:var(--primary-500);opacity:.5;display:block;margin-bottom:12px;}
+        .empty-state p.title{font-weight:600;color:var(--primary-900);margin-bottom:4px;}
+        .empty-state p.desc{font-size:.85rem;margin:0;}
 
         .badge-user{background:var(--primary-500);color:#fff;font-size:.75rem;padding:3px 10px;border-radius:20px;}
 
@@ -91,6 +102,18 @@
                     <a class="nav-link {{ request()->routeIs('user.riwayat_beli') ? 'active' : '' }}"
                        href="{{ route('user.riwayat_beli') }}">
                         <i class="mdi mdi-receipt"></i> Riwayat Beli
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('user.notification') ? 'active' : '' }}"
+                       href="{{ route('user.notification') }}">
+                        <i class="mdi mdi-bell-outline"></i> Notifikasi
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('user.profile') ? 'active' : '' }}"
+                       href="{{ route('user.profile') }}">
+                        <i class="mdi mdi-account-outline"></i> Profile
                     </a>
                 </li>
             </ul>

@@ -4,23 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title','Vendor') — Koleksi Buku</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <style>
         :root {
-            --primary-900:#1e3a8a;
-            --primary-800:#1e40af;
-            --primary-700:#1d4ed8;
-            --primary-600:#2563eb;
-            --primary-500:#3b82f6;
-            --primary-100:#dbeafe;
-            --primary-50:#eff6ff;
-            --radius:10px;
-            --shadow:0 2px 8px rgba(30,64,175,.10);
+            --primary-900:#2D3748;
+            --primary-800:#4c3fd6;
+            --primary-700:#6C63FF;
+            --primary-600:#6C63FF;
+            --primary-500:#8B5CF6;
+            --primary-100:#ECE9FF;
+            --primary-50:#F8F9FC;
+            --radius:16px;
+            --shadow:0 5px 20px rgba(108,99,255,.10);
         }
-        body{margin:0;font-family:'Segoe UI',sans-serif;background:#f0f5ff;}
+        body{margin:0;font-family:'Poppins',sans-serif;background:var(--primary-50);}
 
         .sidebar{width:230px;min-height:100vh;background:linear-gradient(180deg,var(--primary-900) 0%,var(--primary-800) 100%);color:#fff;position:fixed;top:0;left:0;bottom:0;z-index:100;display:flex;flex-direction:column;}
         .sb-brand{padding:22px 20px 18px;font-size:1rem;font-weight:700;border-bottom:1px solid rgba(255,255,255,.1);display:flex;align-items:center;gap:8px;}
@@ -33,8 +35,8 @@
         .sb-footer{padding:16px 20px;border-top:1px solid rgba(255,255,255,.1);}
         .sb-footer .uname{font-size:.85rem;font-weight:600;color:#fff;}
         .sb-footer .urole{font-size:.72rem;color:rgba(255,255,255,.5);margin-bottom:10px;}
-        .btn-logout{display:block;width:100%;padding:6px;text-align:center;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);border-radius:6px;font-size:.8rem;background:transparent;cursor:pointer;transition:.15s;}
-        .btn-logout:hover{background:rgba(255,255,255,.12);color:#fff;}
+        .btn-logout{display:block;width:100%;padding:6px;text-align:center;border:1px solid rgba(255,255,255,.3);color:rgba(255,255,255,.8);border-radius:50px;font-size:.8rem;background:transparent;cursor:pointer;transition:.2s;}
+        .btn-logout:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateY(-1px);}
 
         .main{margin-left:230px;flex:1;padding:24px;}
         .topbar{background:#fff;border-radius:var(--radius);padding:13px 20px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);}

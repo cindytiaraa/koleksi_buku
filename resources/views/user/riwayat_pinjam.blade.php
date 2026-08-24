@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h4 class="mb-4">📖 Riwayat Peminjaman Saya</h4>
+<h4 class="mb-4"><i class="mdi mdi-history text-primary"></i> Riwayat Peminjaman Saya</h4>
 
 <div class="card">
     <div class="card-body p-0">
@@ -58,17 +58,19 @@
                         <td>{{ $p->petugas->name ?? '-' }}</td>
                         <td class="text-center">
                             <a href="{{ route('user.peminjaman.show', $p->idpeminjaman) }}" 
-                               class="btn btn-sm btn-primary text-white font-weight-bold" 
-                               style="border-radius: 6px; box-shadow: 0 2px 5px rgba(145, 118, 251, 0.2);">
+                               class="btn btn-sm btn-primary text-white font-weight-bold btn-pill shadow-lp">
                                 <i class="mdi mdi-qrcode"></i> Lihat QR
                             </a>
                         </td>
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="8" class="text-center text-muted py-5">
-                            Belum ada riwayat peminjaman.<br>
-                            <small>Kunjungi perpustakaan untuk meminjam buku.</small>
+                        <td colspan="9" class="p-0">
+                            <div class="empty-state">
+                                <i class="mdi mdi-book-search-outline"></i>
+                                <p class="title">Belum ada riwayat peminjaman.</p>
+                                <p class="desc">Kunjungi perpustakaan untuk meminjam buku.</p>
+                            </div>
                         </td>
                     </tr>
                     @endforelse

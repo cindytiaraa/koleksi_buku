@@ -25,9 +25,9 @@
 </div>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h5 class="mb-0">📚 Katalog Buku ({{ $buku->total() }} buku)</h5>
-    <a href="{{ route('user.order') }}" class="btn btn-primary">
-        🛒 Beli Buku Online
+    <h5 class="mb-0"><i class="mdi mdi-book-multiple-outline text-primary"></i> Katalog Buku ({{ $buku->total() }} buku)</h5>
+    <a href="{{ route('user.order') }}" class="btn btn-primary btn-pill">
+        <i class="mdi mdi-cart"></i> Beli Buku Online
     </a>
 </div>
 
@@ -36,7 +36,7 @@
     <div class="col-md-3 col-sm-6 mb-4">
         <div class="card card-book h-100">
             <div class="card-img-top">
-                📖
+                <i class="mdi mdi-book-open-page-variant-outline"></i>
             </div>
             <div class="card-body">
                 <h6 class="card-title mb-1">{{ $b->judul }}</h6>
@@ -53,8 +53,8 @@
                 @endif
                 
                 <a href="{{ route('user.peminjaman.create', $b->kode) }}" 
-                   class="btn btn-sm btn-outline-primary btn-block font-weight-bold" 
-                   style="border-radius: 8px; font-size: 0.8rem; padding: 6px;">
+                   class="btn btn-sm btn-outline-primary btn-block font-weight-bold btn-pill" 
+                   style="font-size: 0.8rem; padding: 6px;">
                     <i class="mdi mdi-bookmark-plus-outline"></i> Booking Pinjam
                 </a>
             </div>
@@ -64,9 +64,13 @@
         </div>
     </div>
     @empty
-    <div class="col-12 text-center py-5">
-        <p class="text-muted">Tidak ada buku yang ditemukan.</p>
-        <a href="{{ route('user.dashboard') }}" class="btn btn-outline-primary">Lihat Semua</a>
+    <div class="col-12">
+        <div class="empty-state">
+            <i class="mdi mdi-book-search-outline"></i>
+            <p class="title">Buku tidak ditemukan.</p>
+            <p class="desc mb-3">Coba kata kunci atau kategori lain.</p>
+            <a href="{{ route('user.dashboard') }}" class="btn btn-outline-primary btn-pill">Lihat Semua</a>
+        </div>
     </div>
     @endforelse
 </div>

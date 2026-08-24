@@ -4,7 +4,7 @@
 @section('content')
 <div class="row mb-3">
     <div class="col-md-3 col-sm-6 mb-3">
-        <div class="stat-card" style="background:linear-gradient(135deg,#1d4ed8,#3b82f6)">
+        <div class="stat-card" style="background:linear-gradient(135deg,#6C63FF,#8B5CF6)">
             <h2>{{ $totalPinjamAktif }}</h2>
             <p>📖 Sedang Dipinjam</p>
         </div>
@@ -22,7 +22,7 @@
         </div>
     </div>
     <div class="col-md-3 col-sm-6 mb-3">
-        <div class="stat-card" style="background:linear-gradient(135deg,#1e3a8a,#2563eb)">
+        <div class="stat-card" style="background:linear-gradient(135deg,#4c3fd6,#6C63FF)">
             <h2>Rp {{ number_format($totalPenjualanHari/1000,0,',','.')}}K</h2>
             <p>💰 Penjualan Hari Ini</p>
         </div>

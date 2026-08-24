@@ -5,8 +5,8 @@
 @section('content')
 
 <div class="d-flex justify-content-between align-items-center mb-4">
-    <h4 class="mb-0">🧾 Riwayat Pembelian Saya</h4>
-    <a href="{{ route('user.order') }}" class="btn btn-primary btn-sm">+ Beli Buku</a>
+    <h4 class="mb-0"><i class="mdi mdi-receipt-text-outline text-primary"></i> Riwayat Pembelian Saya</h4>
+    <a href="{{ route('user.order') }}" class="btn btn-primary btn-sm btn-pill">+ Beli Buku</a>
 </div>
 
 <div class="card">
@@ -51,8 +51,7 @@
                                     <i class="mdi mdi-eye"></i> Detail
                                 </button>
                                 <a href="{{ route('user.status_order', $p->midtrans_order_id) }}" 
-                                   class="btn btn-sm btn-primary text-white font-weight-bold" 
-                                   style="border-radius: 4px; box-shadow: 0 2px 4px rgba(145, 118, 251, 0.15);">
+                                   class="btn btn-sm btn-primary text-white font-weight-bold btn-pill shadow-lp">
                                     <i class="mdi mdi-qrcode"></i> Lihat QR
                                 </a>
                             </div>
@@ -88,9 +87,13 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="6" class="text-center text-muted py-5">
-                            Belum ada riwayat pembelian.<br>
-                            <a href="{{ route('user.order') }}">Mulai beli buku sekarang</a>
+                        <td colspan="6" class="p-0">
+                            <div class="empty-state">
+                                <i class="mdi mdi-receipt-text-outline"></i>
+                                <p class="title">Belum ada riwayat pembelian.</p>
+                                <p class="desc mb-3">Silakan mulai menggunakan fitur ini.</p>
+                                <a href="{{ route('user.order') }}" class="btn btn-outline-primary btn-pill btn-sm">Mulai Beli Buku</a>
+                            </div>
                         </td>
                     </tr>
                     @endforelse

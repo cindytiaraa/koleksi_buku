@@ -4,21 +4,21 @@
 
 @section('style_page')
 <style>
-    #totalDisplay { font-size: 1.4rem; font-weight: 700; color: #4B49AC; }
+    #totalDisplay { font-size: 1.4rem; font-weight: 700; color: var(--primary-700, #6C63FF); }
     .item-row { border-bottom: 1px solid #eee; padding: 8px 0; }
 </style>
 @endsection
 
 @section('content')
 
-<h4 class="mb-4">🛒 Beli Buku Online</h4>
+<h4 class="mb-4"><i class="mdi mdi-cart-outline text-primary"></i> Beli Buku Online</h4>
 
 <div class="row">
     {{-- Form Pilih Buku --}}
     <div class="col-md-5 mb-4">
         <div class="card mb-3">
-            <div class="card-header" style="background:#4B49AC;color:white">
-                📦 Pilih Vendor & Buku
+            <div class="card-header card-header-gradient">
+                <i class="mdi mdi-package-variant"></i> Pilih Vendor & Buku
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -54,8 +54,8 @@
         </div>
 
         <div class="card">
-            <div class="card-header" style="background:#4B49AC;color:white">
-                💳 Metode Pembayaran
+            <div class="card-header card-header-gradient">
+                <i class="mdi mdi-credit-card-outline"></i> Metode Pembayaran
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -74,8 +74,8 @@
                     <p class="mb-1 text-muted small">Total</p>
                     <div id="totalDisplay">Rp 0</div>
                 </div>
-                <button id="btnCheckout" class="btn btn-block py-2" disabled
-                    style="background:#4B49AC;color:white;">
+                <button id="btnCheckout" class="btn btn-block py-2 btn-pill" disabled
+                    style="background:linear-gradient(135deg,var(--primary-700),var(--primary-500));color:white;">
                     Checkout & Bayar
                 </button>
             </div>
@@ -85,13 +85,16 @@
     {{-- Keranjang --}}
     <div class="col-md-7 mb-4">
         <div class="card">
-            <div class="card-header d-flex justify-content-between align-items-center"
-                 style="background:#4B49AC;color:white">
-                🛒 Keranjang Belanja
-                <button id="btnKosongkan" class="btn btn-sm btn-light">Kosongkan</button>
+            <div class="card-header card-header-gradient d-flex justify-content-between align-items-center">
+                <span><i class="mdi mdi-cart-outline"></i> Keranjang Belanja</span>
+                <button id="btnKosongkan" class="btn btn-sm btn-light btn-pill">Kosongkan</button>
             </div>
             <div class="card-body">
-                <p class="text-muted text-center py-4" id="emptyMsg">Keranjang masih kosong</p>
+                <div class="empty-state py-3" id="emptyMsg">
+                    <i class="mdi mdi-cart-outline"></i>
+                    <p class="title">Keranjang masih kosong.</p>
+                    <p class="desc">Pilih vendor & buku di sebelah kiri untuk mulai belanja.</p>
+                </div>
                 <div id="keranjangList"></div>
             </div>
         </div>
@@ -162,7 +165,7 @@ function renderKeranjang() {
             <div>
                 <strong>${item.nama}</strong> <small class="text-muted">(${item.kode})</small><br>
                 <small>Rp ${formatRp(item.harga)} × ${item.jumlah} = <strong>Rp ${formatRp(item.subtotal)}</strong></small>
-                ${item.catatan ? `<br><small class="text-muted">📝 ${item.catatan}</small>` : ''}
+                ${item.catatan ? `<br><small class="text-muted"><i class="mdi mdi-note-text-outline"></i> ${item.catatan}</small>` : ''}
             </div>
             <button class="btn btn-sm btn-outline-danger ml-2" onclick="hapus(${i})">✕</button>
         </div>

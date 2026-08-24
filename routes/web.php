@@ -31,6 +31,30 @@ Route::get('/login', function () {
 
 /*
 |=======================
+| LANDING PAGE (BARU)
+| Halaman publik tambahan: About, Catalog, FAQ, Contact
+| Home tetap menggunakan route '/' yang sudah ada di atas.
+| Tidak ada route/controller/model lama yang diubah.
+|=======================
+*/
+Route::get('/about', function () {
+    return view('landing.about');
+})->name('landing.about');
+
+Route::get('/catalog', function () {
+    return view('landing.catalog');
+})->name('landing.catalog');
+
+Route::get('/faq', function () {
+    return view('landing.faq');
+})->name('landing.faq');
+
+Route::get('/contact', function () {
+    return view('landing.contact');
+})->name('landing.contact');
+
+/*
+|=======================
 | OTP
 |=======================
 */
@@ -54,6 +78,14 @@ Route::middleware(['auth', 'otp', 'isAdmin'])
         Route::get('/dashboard',
             [\App\Http\Controllers\Admin\DashboardController::class, 'index']
         )->name('dashboard');
+
+        // ======= Profile & Notification (BARU) =======
+        Route::get('/profile', function () {
+            return view('admin.profile');
+        })->name('profile');
+        Route::get('/notification', function () {
+            return view('admin.notification');
+        })->name('notification');
 
         // ======= Data User =======
         Route::resource('users',
@@ -229,6 +261,14 @@ Route::middleware(['auth', 'otp', 'isPetugas'])
             [\App\Http\Controllers\Petugas\DashboardController::class, 'index']
         )->name('dashboard');
 
+        // ======= Profile & Notification (BARU) =======
+        Route::get('/profile', function () {
+            return view('petugas.profile');
+        })->name('profile');
+        Route::get('/notification', function () {
+            return view('petugas.notification');
+        })->name('notification');
+
         // ======= Peminjaman =======
         Route::get('peminjaman',
             [\App\Http\Controllers\Petugas\PeminjamanController::class, 'index']
@@ -285,6 +325,14 @@ Route::middleware(['auth', 'otp', 'isUser'])
             [\App\Http\Controllers\User\DashboardController::class, 'index']
         )->name('dashboard');
 
+        // ======= Profile & Notification (BARU) =======
+        Route::get('profile', function () {
+            return view('user.profile');
+        })->name('profile');
+        Route::get('notification', function () {
+            return view('user.notification');
+        })->name('notification');
+
         // Riwayat peminjaman
         Route::get('riwayat-pinjam',
             [\App\Http\Controllers\User\DashboardController::class, 'riwayatPinjam']
@@ -339,6 +387,14 @@ Route::middleware(['auth', 'otp', 'isVendor'])
         Route::get('/dashboard',
             [\App\Http\Controllers\VendorController::class, 'dashboard']
         )->name('dashboard');
+
+        // ======= Profile & Notification (BARU) =======
+        Route::get('/profile', function () {
+            return view('vendor.profile');
+        })->name('profile');
+        Route::get('/notification', function () {
+            return view('vendor.notification');
+        })->name('notification');
 
         Route::get('/buku',
             [\App\Http\Controllers\VendorController::class, 'buku']
